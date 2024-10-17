@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+Página de Inicio
+{% endblock %}
+
+{% block content %}
+<h1>¡Bienvenido a la página de inicio! :D</h1>
+<h1>Publicaciones Recientes</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <small>Publicado el: {{ post.created_at }}</small>
+            </li>
+        {% empty %}
+            <p>No hay publicaciones aún.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}
