@@ -27,6 +27,3 @@ def create_post(request):
         form = PostForm()
 
     return render(request, 'blog/create_post.html', {'form': form})
-
-
-
