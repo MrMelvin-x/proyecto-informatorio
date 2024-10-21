@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .category {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .post {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Categorías</h1>
+
+    {% for categoria in categorias %}
+        <div class="category">
+            <h2>{{ categoria.name }}</h2>  
+            <ul>
+                {% for post in posts %}
+                    {% if post.categoria.id == categoria.id %}  
+                        <li class="post">
+                            <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>  
+                            <small>Publicado el: {{ post.created_at }}</small>  
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% empty %}
+        <p>No hay categorías disponibles.</p>
+    {% endfor %}
+</body>
+</html>
